@@ -1,8 +1,11 @@
-import lib.basis_data as db
+import libs.basis_data as db
 import sqlite3
 
 def lihatPengguna():
-    """Mendapatkan semua data pengguna dari database"""
+    """Mendapatkan semua data pengguna dari database.
+    
+    Fungsi ini mengeluarkan sebuah list yang setiap
+    itemnya merupakan list dengan format [username, password]"""
     conn = db.connect()
     cmdPengguna = "SELECT * FROM pengguna"
     dataPengguna = conn.execute(cmdPengguna)

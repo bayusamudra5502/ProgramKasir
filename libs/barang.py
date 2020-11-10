@@ -1,4 +1,4 @@
-import lib.basis_data as db
+import libs.basis_data as db
 import sqlite3
 
 def lihatBarang():
