@@ -75,14 +75,6 @@ def pindahkanKursor(baris,kolom):
     """Pindahkan kursor ke posisi (kolom, baris)"""
     print(colorama.Cursor.POS(kolom, baris), end="") 
 
-# def printPosisi(baris, kolom, listOutput):
-#     """Mencetak ke layar dengan dimulai dari posisi (baris, kolom)"""
-#     i = 0
-#     for text in listOutput:
-#         pindahkanKursor(baris + i, kolom)
-#         print(text, end="")
-#         i += 1
-
 def printRataTengah(baris, listOutput, mode_block = False):
     """Mencetak ke layar dengan Rata Tengah"""
     i = 0
