@@ -1,9 +1,11 @@
 import msvcrt
+from termcolor import *
+import colorama
 
 def inputPassword(prompt="Kata Sandi : ", char="•"):
     """ Fungsi yang membuat inputan user tidak terlihat 
-        Cara kerjanya mirip fungsi input pada umumnya hanya
-        karakternya tidak terlihat saja.
+    Cara kerjanya mirip fungsi input pada umumnya hanya
+    karakternya tidak terlihat saja.
     """
 
     # Tampilkan prompt satu karakter demi satu karakter
@@ -26,7 +28,8 @@ def inputPassword(prompt="Kata Sandi : ", char="•"):
                 msvcrt.putwch(" ")
                 msvcrt.putwch("\b")
             
-            inputUser = inputUser[:-1] # Hapus satu karakter di inputUser
+            # Hapus satu karakter di inputUser
+            inputUser = inputUser[:-1] 
         else:
             inputUser += inputChar
             msvcrt.putwch(char)
@@ -34,3 +37,30 @@ def inputPassword(prompt="Kata Sandi : ", char="•"):
     msvcrt.putwch("\r")
     msvcrt.putwch("\n")
     return inputUser
+
+class Warna(object):
+    """Daftar Warna yang tersedia"""
+    abu_abu = "grey"
+    merah = "red"
+    hijau = "green"
+    kuning = "yellow"
+    biru = "blue"
+    magenta = "magenta"
+    cyan = "cyan"
+    putih = "white"
+
+class Atribut(object):
+    """Daftar Atribut"""
+    garis_bawah = "underline"
+    tebal = "bold"
+    reverse = "reverse"
+
+def warna(text, warna_teks = None, warna_belakang = None, attrs=[]):
+    if warna_teks != None and warna_belakang == None:
+        return colored(text, warna_teks, attrs=attrs)
+    elif warna_teks == None and warna_belakang != None:
+        return colored(text, on_color="on_" + warna_belakang, attrs=attrs)
+    elif warna_teks != None and warna_belakang != None:
+        return colored(text, warna_teks, "on_" + warna_belakang, attrs=attrs)
+    else:
+        return colored(text, attrs=attrs)

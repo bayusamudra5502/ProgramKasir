@@ -1,3 +1,3 @@
-import lib.barang as barang
+from lib.library import *
 
-print(barang.dapatkanBarang())
+print(warna("Halo, Dunia"), warna("ini Bayu"))
