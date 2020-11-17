@@ -2,7 +2,13 @@ import libs.basis_data as db
 import sqlite3
 
 def lihatBarang():
-    """Mendapatkan semua data pengguna dari database"""
+    """Mendapatkan semua data pengguna dari database
+    
+    Format tiap elemen:
+    Indeks 0 = Kode Barang
+    Indeks 1 = Nama Barang
+    Indeks 2 = Stock
+    Indeks 3 = Harga"""
     conn = db.connect()
     cmdPengguna = "SELECT * FROM barang"
     dataPengguna = conn.execute(cmdPengguna)

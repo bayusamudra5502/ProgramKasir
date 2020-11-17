@@ -16,7 +16,6 @@ matDaftarBarang = lihatBarang()
 #   edit Nama barang menjadi "A" dan stock menjadi 20, bisa gini: 
 #   editBarang("123", Nama_barang="A", stock = 20)
 #
-#
 # hapusBarang(Kode_Barang)
 #   untuk happus barang
 #

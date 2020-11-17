@@ -2,6 +2,7 @@ import msvcrt
 from termcolor import *
 import colorama
 from os import system, get_terminal_size
+import datetime
 
 def inputPassword(prompt="Kata Sandi : ", char="•"):
     """ Fungsi yang membuat inputan user tidak terlihat 
@@ -107,5 +108,14 @@ def cetakFrame(karakter_frame = "#"):
             pindahkanKursor(i, get_terminal_size().columns)
             print(karakter_frame, end="")
 
-def printTabel(judul_kolom, data):
-    pass
+def printStruk(msg):
+    try:
+        now = datetime.datetime.now()
+        file = open("struk/"+ now.strftime("Struk_%d-%m-%Y_%H-%M-%S") +".txt","w")
+        print("=================", file)
+        print("STRUK PEMBAYARAN", file)
+        print("=================", file)
+        print()
+    except IOError as err:
+        print(warnai("Gagal membuat stuk pembayaran.", Warna.merah))
+        return False
