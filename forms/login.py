@@ -2,11 +2,12 @@
 """ Form yang mengatur mengenai segala yang berkaitan dengan
 proses login
 """
-
 from libs.library import *
+from forms.menu import formMenu
 
 ## MODEL
 def cekLogin(username, password):
+    global strPenggunaLogin
     """ Memeriksa apakah pasangan username dan password ada dalam
     database.
     """
@@ -14,6 +15,7 @@ def cekLogin(username, password):
 
     for i in matPengguna:
         if(i[0] == username and i[1] == password):
+            strPenggunaLogin = username
             return True
     
     return False
@@ -21,17 +23,6 @@ def cekLogin(username, password):
 ## VIEW
 def cetakTampilan(boolKeadaanError = False):
     """ Fungsi ini akan mencetak tampilan dari form login menghasilkan posisi baris terakhir"""
-    listStrJudul = warnai("""
-      _              __    _   __                      _    ___  ____                  _           
-     / \            [  |  (_) [  |  _                 (_)  |_  ||_  _|                (_)          
-    / _ \    _ .--.  | |  __   | | / ]  ,--.   .--.   __     | |_/ /    ,--.   .--.   __   _ .--.  
-   / ___ \  [ '/'`\ \| | [  |  | '' <  `'_\ : ( (`\] [  |    |  __'.   `'_\ : ( (`\] [  | [ `/'`\] 
- _/ /   \ \_ | \__/ || |  | |  | |`\ \ // | |, `'.'.  | |   _| |  \ \_ // | |, `'.'.  | |  | |     
-|____| |____|| ;.__/[___][___][__|  \_]\'-;__/[\__) )[___] |____||____|\'-;__/[\__) )[___][___]    
-            [__|                                                                                   """, Warna.cyan).split("\n")
-    
-    listDeveloper = ["A","B","C","D"]
-    strVersi = "Program Versi Alpha"
 
     listStrError = warnai("""#########################################################
 # ❌ LOGIN GAGAL                                        #
@@ -72,3 +63,5 @@ def formLogin():
     while(not boolSudahLogin):
         boolSudahLogin = inputPengguna(cetakTampilan(boolSalah))
         boolSalah = not boolSudahLogin
+    
+    formMenu()

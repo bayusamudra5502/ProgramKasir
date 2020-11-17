@@ -83,6 +83,7 @@ def printRataTengah(baris, listOutput, mode_block = False):
             pindahkanKursor(baris + i, (get_terminal_size().columns \
                         - len(text)) // 2)
             print(text)
+            i += 1
     else: # Buat menjadi ditengah berdasarkan baris yg terpanjang
         intMax = -1
         for text in listOutput: # Mencari string perpanjang
@@ -105,3 +106,6 @@ def cetakFrame(karakter_frame = "#"):
             print(karakter_frame, end="")
             pindahkanKursor(i, get_terminal_size().columns)
             print(karakter_frame, end="")
+
+def printTabel(judul_kolom, data):
+    pass

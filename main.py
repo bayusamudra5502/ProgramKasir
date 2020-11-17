@@ -10,11 +10,19 @@
         
         Versi Alpha
 """
-from forms.login import formLogin
+
+from forms.login import *
+from forms.loading import *
 
 def main():
     # Fungsi utama dari program
     formLogin()
 
-if __name__ == "__main__":
-    main()
+try:
+    if __name__ == "__main__":
+        formLoading()
+        main()
+except KeyboardInterrupt as err:
+    print("Menutup program...")
+finally:
+    hapusLayar()
