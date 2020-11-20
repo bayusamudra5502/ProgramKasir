@@ -7,6 +7,7 @@
 from libs.io import *
 from libs.barang import *
 from libs.user import *
+from math import log10
 import re
 
 # Konstanta

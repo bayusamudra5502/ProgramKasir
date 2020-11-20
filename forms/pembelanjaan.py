@@ -48,13 +48,13 @@ def cetakStruk(Keranjang_Belanja, Uang_Dibayarkan):
             print(f"{i[0]}\t".expandtabs(14), f"{i[1]}\t".expandtabs(30), end="", file=file)
             print(f"Rp{i[2]}\t".expandtabs(17), f"x {i[3]}", f"= {i[2]*i[3]*(1-i[4])}", end="", file=file)
             if i[4] != 0:
-                print(f" (Disc {i[4]}%)", end="", file=file)
+                print(f" (Disc {i[4]*100:.0f}%)", end="", file=file)
             print(file=file)
         
         floatTotal = hitungBelanjaan(Keranjang_Belanja)
-        print("Total     : Rp", floatTotal, sep="", file=file)
-        print("Bayar     : Rp", Uang_Dibayarkan, sep="", file=file)
-        print("Kembalian : Rp", Uang_Dibayarkan-floatTotal, sep="", file=file)
+        print("\nTotal     : Rp", f"{floatTotal:,.2f}", sep="", file=file)
+        print("Bayar     : Rp", f"{Uang_Dibayarkan:,.2f}", sep="", file=file)
+        print("Kembalian : Rp", f"{Uang_Dibayarkan-floatTotal:,.2f}", sep="", file=file)
         print(file=file)
         print("Terima Kasih :D", file=file)
         return True
@@ -338,8 +338,8 @@ def cetakTabel(Keranjang_Belanja):
     # [Kode_Barang, Nama_Barang, Harga, Qyt, Diskon]
 
     # KONSTANTA
-    LEBAR_NO = len(Keranjang_Belanja) // 10 + 2
-    LEBAR_KODE = 15
+    LEBAR_NO = int(log10(len(Keranjang_Belanja) + 1)) + 2
+    LEBAR_KODE = 20
     LEBAR_NAMA = 40
     LEBAR_HARGA = 15
     LEBAR_QYT = 8
@@ -360,7 +360,7 @@ def cetakTabel(Keranjang_Belanja):
         LEBAR_QYT + LEBAR_TOTAL+ C - 2))
     
     if len(Keranjang_Belanja) == 0:
-        print("| \tKERANJANG BELANJA KOSONG".expandtabs((LEBAR_NO + LEBAR_KODE + LEBAR_NAMA + LEBAR_HARGA + 
+        print("| \tKERANJANG BELANJA KOSONG ".expandtabs((LEBAR_NO + LEBAR_KODE + LEBAR_NAMA + LEBAR_HARGA + 
         LEBAR_QYT + LEBAR_DISKON + LEBAR_TOTAL + C-13-24)//2), end="")
         print("\t|".expandtabs((LEBAR_NO + LEBAR_KODE + LEBAR_NAMA + LEBAR_HARGA + 
         LEBAR_QYT + LEBAR_DISKON + LEBAR_TOTAL + C-13-12)//2-6))

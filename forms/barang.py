@@ -22,20 +22,20 @@ def cetakTabel(matDaftarBarang):
     """Fungsi ini untuk mencetak matriks matDaftarBarang menjadi
     tabel."""
 
-    print("=" * (len(matDaftarBarang)//10 + 109))
-    print("| No.\t".expandtabs(len(matDaftarBarang)//10 + 2) , 
+    print("=" * (int(log10(len(matDaftarBarang)+1)) + 109))
+    print("| No.\t".expandtabs(int(log10(len(matDaftarBarang)+1)) + 6) , 
           " | Kode Barang\t".expandtabs(20)," | Nama Barang\t".expandtabs(50),
           " | Stock\t |".expandtabs(10), " Harga\t |".expandtabs(15))
-    print("=" * (len(matDaftarBarang)//10 + 109))
+    print("=" * (int(log10(len(matDaftarBarang)+1)) + 109))
     if len(matDaftarBarang) == 0: # Kalau data belum ada cetak BELUM ADA DATA DISINI
         print("|\tBELUM ADA DATA DISINI".expandtabs((83-21+25)//2), "\t|".expandtabs((83-22+25)//2))
     for i in range(len(matDaftarBarang)):
-        print(  f"| {i+1}\t".expandtabs(len(matDaftarBarang)//10 + 7 - i//10), 
+        print(  f"| {i+1}\t".expandtabs(int(log10(len(matDaftarBarang)+1)) + 7), 
                 f"| {matDaftarBarang[i][0]}\t".expandtabs(20), 
                 f"| {matDaftarBarang[i][1]}\t".expandtabs(50),
                 f"| {str(matDaftarBarang[i][2])}\t".expandtabs(9),
                 f"| Rp{matDaftarBarang[i][3]:,}\t |".expandtabs(17))
-    print("-" * (len(matDaftarBarang)//10 + 109))
+    print("-" * (int(log10(len(matDaftarBarang)+1)) + 109))
 
 def formBarang():
     """Fungsi ini akan menampilkan form barang.
