@@ -273,6 +273,7 @@ def pembayaran(Keranjang_Belanja, Daftar_Barang):
     Keluaran:
     Mengembalikan True bila berhasil, False bila gagal."""
     if len(Keranjang_Belanja) == 0:
+        print(warnai("Peringatan! Keranjang belanja masih kosong", Warna.kuning))
         return False
 
     try:
@@ -322,9 +323,11 @@ def pembayaran(Keranjang_Belanja, Daftar_Barang):
 
             pindahkanKursor(11,4)
             input(warnai("Pembayaran Selesai. Tekan enter untuk kembali.", Warna.hijau))
-
+            hapusLayar()
+            
             return True
     except KeyboardInterrupt:
+        hapusLayar()
         print(warnai("Pembayaran dibatalkan.", Warna.hijau))
         return False
 
@@ -344,7 +347,7 @@ def cetakTabel(Keranjang_Belanja):
     LEBAR_TOTAL = 25
     C = 4*6 # Penambah supaya pas
 
-    print("=" * (LEBAR_NO + LEBAR_KODE + LEBAR_NAMA + LEBAR_HARGA + 
+    print("-" * (LEBAR_NO + LEBAR_KODE + LEBAR_NAMA + LEBAR_HARGA + 
         LEBAR_QYT + LEBAR_TOTAL+ C - 2))
     print("| No.\t".expandtabs(LEBAR_NO),
           "| Kode Barang\t".expandtabs(LEBAR_KODE),
@@ -353,12 +356,14 @@ def cetakTabel(Keranjang_Belanja):
           "| Qyt\t".expandtabs(LEBAR_QYT),
           "| Diskon  ",
           "| Total\t |".expandtabs(LEBAR_TOTAL))
-    print("=" * (LEBAR_NO + LEBAR_KODE + LEBAR_NAMA + LEBAR_HARGA + 
+    print("-" * (LEBAR_NO + LEBAR_KODE + LEBAR_NAMA + LEBAR_HARGA + 
         LEBAR_QYT + LEBAR_TOTAL+ C - 2))
     
     if len(Keranjang_Belanja) == 0:
-        print("| \tKERANJANG BELANJA KOSONG\t|".expandtabs((LEBAR_NO + LEBAR_KODE + LEBAR_NAMA + LEBAR_HARGA + 
-        LEBAR_QYT + LEBAR_DISKON + LEBAR_TOTAL + C-13)//2))
+        print("| \tKERANJANG BELANJA KOSONG".expandtabs((LEBAR_NO + LEBAR_KODE + LEBAR_NAMA + LEBAR_HARGA + 
+        LEBAR_QYT + LEBAR_DISKON + LEBAR_TOTAL + C-13-24)//2), end="")
+        print("\t|".expandtabs((LEBAR_NO + LEBAR_KODE + LEBAR_NAMA + LEBAR_HARGA + 
+        LEBAR_QYT + LEBAR_DISKON + LEBAR_TOTAL + C-13-12)//2-6))
     else:
         j = 0
         for i in Keranjang_Belanja:
@@ -367,13 +372,13 @@ def cetakTabel(Keranjang_Belanja):
                   f"| {i[1]}\t ".expandtabs(LEBAR_NAMA-1),
                   f"| Rp{i[2]:,.0f}\t ".expandtabs(LEBAR_HARGA-1),
                   f"| {i[3]}\t ".expandtabs(LEBAR_QYT-1),
-                  f"| {i[4]*100}%\t ".expandtabs(LEBAR_DISKON-1),
+                  f"| {i[4]*100:.0f}%\t ".expandtabs(LEBAR_DISKON-1),
                   f"| Rp{i[2]*i[3]*(1-i[4]):,.0f}\t |".expandtabs(LEBAR_TOTAL))
             j += 1
 
-    print("=" * (LEBAR_NO + LEBAR_KODE + LEBAR_NAMA + LEBAR_HARGA + 
+    print("-" * (LEBAR_NO + LEBAR_KODE + LEBAR_NAMA + LEBAR_HARGA + 
         LEBAR_QYT + LEBAR_TOTAL+ C - 2))
-    print(f"Total Belanjaan : Rp{hitungBelanjaan(Keranjang_Belanja):,}")
+    print(f"Total Belanjaan : Rp{hitungBelanjaan(Keranjang_Belanja):,.2f}")
 
 def editKeranjang(Keranjang_Belanja, Daftar_Barang):
     """Prosedur ini akan mengedit keranjang belanja.
@@ -381,6 +386,10 @@ def editKeranjang(Keranjang_Belanja, Daftar_Barang):
     Input : 
     Keranjang_Belanja = Matriks keranjang belanja. (Reference Mode)
     Daftar_Barang     = Matriks daftar barang belanjaan. (Reference Mode)"""
+
+    if len(Keranjang_Belanja) == 0:
+        print(warnai("Peringatan! Keranjang belanja masih kosong", Warna.kuning))
+        return False
 
     Index_Keranjang = -1
     boolValid = False
@@ -422,30 +431,30 @@ def editKeranjang(Keranjang_Belanja, Daftar_Barang):
             cetakFrame()
             printRataTengah(3, [warnai("EDIT KERANJANG", Warna.cyan)])
             pindahkanKursor(5,4)
-            print("Data keranjang yang akan diedit : ")
+            print("Data keranjang yang diedit : ")
             pindahkanKursor(6,4)
             print("Nomor Baris :", Index_Keranjang + 1)
             pindahkanKursor(7,4)
-            print("Kode Barang :", Keranjang_Belanja[Index_Keranjang][0])
+            print(f"Kode Barang : {Keranjang_Belanja[Index_Keranjang][0]}")
             pindahkanKursor(8,4)
-            print("Nama Barang :", Keranjang_Belanja[Index_Keranjang][1])
+            print(f"Nama Barang : {Keranjang_Belanja[Index_Keranjang][1]}")
             pindahkanKursor(9,4)
-            print("Qyt         :", Keranjang_Belanja[Index_Keranjang][3])
+            print(f"Qyt         : {Keranjang_Belanja[Index_Keranjang][3]}")
             pindahkanKursor(10,4)
-            print("Harga       :", "Rp", Keranjang_Belanja[Index_Keranjang][2])
+            print(f"Harga       : {Keranjang_Belanja[Index_Keranjang][2]:,.2f}")
             pindahkanKursor(11,4)
-            print("Diskon      :", Keranjang_Belanja[Index_Keranjang][4])
+            print("Diskon      :", Keranjang_Belanja[Index_Keranjang][4]*100, "%")
             pindahkanKursor(12,4)
             if Keranjang_Belanja[Index_Keranjang][4] > 0:
-                print("Total       :", warnai("Rp " + str((Keranjang_Belanja[Index_Keranjang][2] * \
-                                    Keranjang_Belanja[Index_Keranjang][3] * (1-Keranjang_Belanja[Index_Keranjang][4])), \
-                                    Warna.kuning)), "(Setelah Diskon)")
+                floatTotal = (Keranjang_Belanja[Index_Keranjang][2] * Keranjang_Belanja[Index_Keranjang][3]\
+                     * (1-Keranjang_Belanja[Index_Keranjang][4]))
+                print("Total       :", 
+                    warnai(f"Rp {floatTotal:,.2f} (Setelah Diskon)", Warna.kuning))
             else:
-                print("Total       :", "Rp", Keranjang_Belanja[Index_Keranjang][2] * 
-                                Keranjang_Belanja[Index_Keranjang][3] * (1-Keranjang_Belanja[Index_Keranjang][4]))
+                print("Total       :", f"Rp {floatTotal:,.2f}")
 
             pindahkanKursor(14,4)
-            print("Pilihan Pengeditan : ")
+            print("Opsi pengeditan yang tersedia: ")
             pindahkanKursor(15,4)
             print("1. Kode Barang")
             pindahkanKursor(16,4)
@@ -453,11 +462,12 @@ def editKeranjang(Keranjang_Belanja, Daftar_Barang):
             pindahkanKursor(17,4)
             print("3. Diskon")
             pindahkanKursor(18,4)
-            print("4. Simpan dan selesai")
+            print("4. Selesai dan kembali ke Form Kasir")
             pindahkanKursor(19,4)
-            print(warnai("Petunjuk : Gunakan CTRL+C untuk membatalkan.", Warna.biru))
+            print(warnai("Peringatan! Segala perubahan yang dilakukan, tidak bisa dikembalikan.", Warna.magenta))
+
             pindahkanKursor(21,4)
-            strPilihan = input("Pilihan Pengeditan : ")
+            strPilihan = input("Pilihan : ")
             
             pindahkanKursor(22,4)
             print(" " * 36)
@@ -468,13 +478,13 @@ def editKeranjang(Keranjang_Belanja, Daftar_Barang):
                 while(intIndex == -1):
                     hapusLayar()
                     cetakFrame()
-                    printRataTengah(2, warnai("EDIT KODE BARANG"))
-                    pindahkanKursor(4,4)
-                    print(warnai("Petunjuk : Tekan CTRL+C untuk membatalkan aksi ini.", Warna.biru))
+                    printRataTengah(3, [warnai("EDIT KODE BARANG", Warna.cyan)])
                     pindahkanKursor(5,4)
+                    print(warnai("Petunjuk : Tekan CTRL+C untuk membatalkan aksi ini.", Warna.biru))
+                    pindahkanKursor(6,4)
                     print(warnai("           Tulis CARI pada input kode barang bila anda ingin mencari data barang.\n", Warna.biru))
             
-                    pindahkanKursor(7,4)
+                    pindahkanKursor(8,4)
                     strKode = input("Masukkan kode barang baru : ")
                     if strKode.upper() == "CARI":
                             try:
@@ -524,7 +534,7 @@ def editKeranjang(Keranjang_Belanja, Daftar_Barang):
                                         boolSelesai = True
                                     else:
                                         hapusLayar()
-                                        print(warnai("Error! Masukan angka antara 1 s.d 5 saja.", Warna.merah))
+                                        print(warnai("Error! Masukan angka antara 1 s.d 4 saja.", Warna.merah))
                             except KeyboardInterrupt:
                                 print(warnai("Pemberitahuan : Aksi dibatalkan..", Warna.hijau))
                             finally:
@@ -536,7 +546,7 @@ def editKeranjang(Keranjang_Belanja, Daftar_Barang):
                             break
                         
                     if(intIndex == -1):
-                        pindahkanKursor(8,4)
+                        pindahkanKursor(9,4)
                         print(warnai("Kesalahan: Kode barang tidak ditemukan.", Warna.merah))
                 
                 intIndexSebelum = -1
@@ -545,13 +555,16 @@ def editKeranjang(Keranjang_Belanja, Daftar_Barang):
                             intIndexSebelum = i
                             break
                 
+                Keranjang_Belanja[Index_Keranjang][0] = strKode
+                Keranjang_Belanja[Index_Keranjang][1] = Daftar_Barang[intIndex][1]
+                Keranjang_Belanja[Index_Keranjang][2] = Daftar_Barang[intIndex][3]
                 Daftar_Barang[intIndex][2] -= Keranjang_Belanja[Index_Keranjang][3]
                 Daftar_Barang[intIndexSebelum][2] += Keranjang_Belanja[Index_Keranjang][3]
-                pindahkanKursor(9,4)
+                # pindahkanKursor(9,4)
             elif strPilihan == "2":
                 boolOK = False
                 while not boolOK:
-                    pindahkanKursor(21,4)
+                    pindahkanKursor(22,4)
                     try:
                         intJumlahBaru = int(input("Masukan jumlah barang yang baru : "))
 
@@ -560,9 +573,9 @@ def editKeranjang(Keranjang_Belanja, Daftar_Barang):
                             if(Daftar_Barang[i][0] == Keranjang_Belanja[Index_Keranjang][0]):
                                 intIndexSebelum = i
                                 break
-                        pindahkanKursor(22,4)
+                        pindahkanKursor(23,4)
                         print(" " * 50)
-                        pindahkanKursor(22,4)
+                        pindahkanKursor(23,4)
 
                         if intJumlahBaru > (Daftar_Barang[intIndexSebelum][2] + Keranjang_Belanja[Index_Keranjang][3]):
                             print(warnai("Keterangan: Stock Barang tidak mencukupi.", Warna.kuning))
@@ -573,16 +586,16 @@ def editKeranjang(Keranjang_Belanja, Daftar_Barang):
                             boolOK = True
 
                     except ValueError:
-                        pindahkanKursor(22,4)
+                        pindahkanKursor(23,4)
                         print(" " * 50)
-                        pindahkanKursor(22,4)
+                        pindahkanKursor(23,4)
                         print(warnai("Error: Masukkan input berupa bilangan bulat.", Warna.merah))
             elif strPilihan == "3":
                 boolOK = False
                 while not boolOK:
-                    pindahkanKursor(21,4)
+                    pindahkanKursor(22,4)
                     try:
-                        intDiskon = int(input("Massukan Diskon (dalam %) : "))
+                        intDiskon = int(input("Masukkan Diskon (dalam %) : "))
                         if(0 <= intDiskon <= 100):
                             boolOK = True
                             Keranjang_Belanja[Index_Keranjang][4] = intDiskon / 100
@@ -594,11 +607,13 @@ def editKeranjang(Keranjang_Belanja, Daftar_Barang):
                         pindahkanKursor(22,4)
                         print(warnai("Error: Masukkan input berupa bilangan bulat antara 0 s.d. 100.", Warna.merah))
             elif strPilihan == "4":
+                hapusLayar()
                 boolSelesai = True
             else:
-                print(warnai("Masukan angka mulai dari 1 s.d. 4.", Warna.merah))
+                print(warnai("Masukan angka mulai dari 1 s.d. 5.", Warna.merah))
 
         except KeyboardInterrupt:
+            hapusLayar()
             pindahkanKursor(2,2)
             print(warnai("Aksi dibatalkan.", Warna.hijau))
 
@@ -654,12 +669,11 @@ def formPembelanjaan():
                 else:
                     hapusLayar()
             elif strPilihan == "3":
-                editKeranjang(matKeranjangBelanja, matDaftarBarang)
                 hapusLayar()
+                editKeranjang(matKeranjangBelanja, matDaftarBarang)
             elif strPilihan == "4":
                 hapusLayar()
-                if not pembayaran(matKeranjangBelanja, matDaftarBarang):
-                    print(warnai("Peringatan! Keranjang belanja masih kosong", Warna.kuning))
+                pembayaran(matKeranjangBelanja, matDaftarBarang)
             elif strPilihan == "5":
                 hapusLayar()
                 boolMenuUtama = True
