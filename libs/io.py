@@ -98,7 +98,7 @@ def printRataTengah(baris, listOutput, mode_block = False):
 
 def cetakFrame(karakter_frame = "#"):
     """Mencetak Frame"""
-    for i in range(1, get_terminal_size().lines + 1): # Mencetak pinggiran
+    for i in range(1, get_terminal_size().lines + 1): # Tranvere tiap baris
         if i == 1 or i == get_terminal_size().lines:
             for j in range(1,get_terminal_size().columns + 1):
                 print(karakter_frame, end="")
@@ -107,15 +107,3 @@ def cetakFrame(karakter_frame = "#"):
             print(karakter_frame, end="")
             pindahkanKursor(i, get_terminal_size().columns)
             print(karakter_frame, end="")
-
-def printStruk(msg):
-    try:
-        now = datetime.datetime.now()
-        file = open("struk/"+ now.strftime("Struk_%d-%m-%Y_%H-%M-%S") +".txt","w")
-        print("=================", file)
-        print("STRUK PEMBAYARAN", file)
-        print("=================", file)
-        print()
-    except IOError as err:
-        print(warnai("Gagal membuat stuk pembayaran.", Warna.merah))
-        return False

@@ -1,3 +1,3 @@
-from forms.barang import *
+from forms.pembelanjaan import *
 
-formBarang()
+formPembelanjaan()

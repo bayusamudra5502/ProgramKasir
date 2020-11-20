@@ -7,6 +7,7 @@
 from libs.io import *
 from libs.barang import *
 from libs.user import *
+import re
 
 # Konstanta
 listDeveloper = ["A","B","C","D"]
@@ -27,3 +28,22 @@ system("echo off")
 
 # Variabel Global
 strPenggunaLogin = ""
+
+def cariRegex(Kunci, Data, Index):
+  """"Mencari baris pada Data yang sesuai dengan Kunci.
+  Pencarian berdasarkan pola Regular Expression pada kolom Index. 
+  Hasil dari fungsi ini akan mengeluarkan matriks yang sesuai dengan
+  kunci.
+  
+  Input : 
+  Kunci = string
+  Data  = matriks
+  Index = int
+  
+  Output : Matriks yang sesuai pola"""
+  matResult = []
+  for i in Data:
+    if re.findall(Kunci, i[Index]) != []:
+      matResult.append(i)
+  
+  return matResult

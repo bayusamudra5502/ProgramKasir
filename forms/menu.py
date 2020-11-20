@@ -8,6 +8,7 @@ from forms.barang import *
 from forms.loading import *
 from forms.pembelanjaan import *
 from forms.pengguna import *
+
 # Gunakan fungsi ini untuk memudahkan anda:
 # hapusLayar() : Untuk membersihkan layar
 # formBarang() : Membuka form barang
