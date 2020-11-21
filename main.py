@@ -18,11 +18,16 @@ def main():
     # Fungsi utama dari program
     formLogin()
 
+
 try:
     if __name__ == "__main__":
         formLoading()
         main()
 except KeyboardInterrupt as err:
-    print("Menutup program...")
+    pass
 finally:
     hapusLayar()
+
+    print(warnai("Menutup program...", Warna.kuning))
+    print(warnai("Program Selesai", Warna.hijau))
+    print()

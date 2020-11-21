@@ -7,7 +7,7 @@ from forms.menu import formMenu
 
 ## MODEL
 def cekLogin(username, password):
-    global strPenggunaLogin
+    global PenggunaLogin
     """ Memeriksa apakah pasangan username dan password ada dalam
     database.
     """
@@ -15,7 +15,7 @@ def cekLogin(username, password):
 
     for i in matPengguna:
         if(i[0] == username and i[1] == password):
-            strPenggunaLogin = username
+            PenggunaLogin[0] = username
             return True
     
     return False

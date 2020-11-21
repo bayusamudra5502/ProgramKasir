@@ -1,3 +1,11 @@
-from forms.pembelanjaan import *
+from forms.menu import *
+from libs.library import *
+from forms.pengguna import *
 
-formPembelanjaan()
+PenggunaLogin[0] = "Bayu"
+
+formPengguna()
+
+# x = msvcrt.getch()
+# y = msvcrt.getch()
+# print(x,y)

@@ -28,7 +28,7 @@ colorama.init()
 system("echo off")
 
 # Variabel Global
-strPenggunaLogin = ""
+PenggunaLogin = [None]
 
 def cariRegex(Kunci, Data, Index):
   """"Mencari baris pada Data yang sesuai dengan Kunci.
@@ -48,3 +48,13 @@ def cariRegex(Kunci, Data, Index):
       matResult.append(i)
   
   return matResult
+
+def cetakHeader(Judul = "Menu Utama"):
+    hapusLayar()
+    cetakFrame()
+    pindahkanKursor(3, 3)
+    print(warnai(f" Login sebagai {PenggunaLogin[0]}", Warna.kuning))
+    printRataTengah((get_terminal_size().lines)// 4, listStrJudul, True)
+    printRataTengah((get_terminal_size().lines)// 4 + 9, [colored(Judul ,Warna.cyan)])
+    printRataTengah((get_terminal_size().lines)// 4 + 11, [colored("Pilihlah aksi yang akan anda lakukan:",Warna.putih)])
+    return (get_terminal_size().lines)// 4 + 12
