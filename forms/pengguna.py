@@ -61,9 +61,10 @@ def formPengguna():
                 boolError = False
                 
                 printRataTengah(intPosBaris + 1, ["Opsi Pilihan Aksi", "1. Tambah Pengguna",
-                                "2. Hapus Pengguna", "3. Edit Password", "4. Kembali ke Menu Utama"], True)
+                                "2. Hapus Pengguna", "3. Edit Password", "4. Lihat Semua User",
+                                "5. Kembali ke Menu Utama"], True)
                 intPerEmpat = get_terminal_size().columns // 3
-                pindahkanKursor(intPosBaris + 7, intPerEmpat)
+                pindahkanKursor(intPosBaris + 8, intPerEmpat)
                 Act = input('Masukkan Opsi : ')
 
                 if Act == "1" :
@@ -137,7 +138,7 @@ def formPengguna():
                         print("Berikut ini adalah daftar username yang terdaftar")
                         for x in range(len(listUsername)) :
                             if listUsername[x] == PenggunaLogin[0]:
-                                print(f"{x+1}. ", warnai(f"{listUsername[x]} (Aktif)", Warna.hijau))
+                                print(f"{x+1}.", warnai(f"{listUsername[x]} (Aktif)", Warna.hijau))
                             else:
                                 print(f"{x+1}. {listUsername[x]}")
                         print()
@@ -156,7 +157,7 @@ def formPengguna():
                                 hapusPengguna(username)
                                 boolSelesai = True
                                 boolInfo = True
-                                strMsg = f"Pengguna {Username} berhasil dihapus."
+                                strMsg = f"Pengguna {username} berhasil dihapus."
                                 break
                             
                         if not boolSelesai:
@@ -218,6 +219,18 @@ def formPengguna():
                             pindahkanKursor(11,3)
                             print(warnai("Ulangi, password baru dan verifikasi password baru tidak sama", Warna.merah))
                 elif Act == "4":
+                    hapusLayar()
+                    printRataTengah(2,[warnai("LIHAT USER", Warna.cyan)])
+                    pindahkanKursor(4,1)
+                    print("Berikut ini adalah daftar username yang terdaftar")
+                    for x in range(len(listUsername)) :
+                            if listUsername[x] == PenggunaLogin[0]:
+                                print(f"{x+1}.", warnai(f"{listUsername[x]} (Aktif)", Warna.hijau))
+                            else:
+                                print(f"{x+1}. {listUsername[x]}")
+                    print()
+                    input("Tekan ENTER untuk kembali. ")
+                elif Act == "5":
                     menu_utama = True
                 else:
                     boolError = True
