@@ -13,7 +13,7 @@ from math import log10 # Logaritma basis 10
 import re # Regular Expression
 
 # Konstanta
-listDeveloper = ["Bayu Samudra (16520420)", "Daniel Salim (16520410)", "Dion Timotius Daeli (16520390)"]
+listDeveloper = ["Bayu S. (16520420)", "Daniel S. (16520410)", "Dion T. Daeli (16520390)"]
 strVersi = "Program Versi Alpha"
 
 # Memecah string dari judul program agar tiap baris menjadi item dari list

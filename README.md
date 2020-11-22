@@ -35,6 +35,10 @@ Prasyarat yang perlu dimiliki untuk menjalankan program ini adalah:
 ## Cara Menjalankan Program
 Untuk menjalankan program ini, anda hanya perlu menjalankan perintah ini:
 `python main.py`
+### Pengguna
+Gunakan username dan password default berikut:
+* Username : admin
+* Password : admin
 
 ## Cara Berkontribusi
 Disini terdapat beberapa folder penting, yaitu:
